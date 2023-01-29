@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 : root {
 
 }
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, #00AAff, #00FF6C);
+    background: linear-gradient(to right, #ffaa00, hwb(43 0% 38%));
     font-family: "Roboto", sans-serif;
     font-weight: 300;
 }
@@ -49,4 +50,8 @@ body {
 
 .span-two {
     grid-column: span 2;
+}
+
+.span-two-rows {
+    grid-row: span 2;
 }
