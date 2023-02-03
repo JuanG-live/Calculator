@@ -26,20 +26,19 @@ class Calculator {
         this.currentOperand = this.currentOperand.slice(0,-1)
     }
     appendDigit(digit) {
-        /* Solo pone un punto */
-        if (digit === '.' && this.currentOperand.includes('.')) return;
+        const tempOperand = this.currentOperand + digit;
+        
+        // poner un solo '.'
+        if (digit === '.' && this.currentOperand.includes('.'))return;
 
-        /* if (Number.isNaN(Number(this.currentOperand + digit))) return; */
+        // poner un cero a la izq cuando selecciono '.'
+        if (digit === '.' && this.currentOperand === '') this.currentOperand = '0';
 
-        /*Si pongo un '.' se pone un 0 */
-        if (digit === '.' && this.currentOperand === '')this.currentOperand = '0' + this.currentOperand;
-    
+        // Poner un solo cero a la izq
+        if (digit === '0' && this.currentOperand === '0') return;
 
-        /* no poner mas de un '0' a la izq. */
-        if(digit === '0' && this.currentOperand.startsWith('0')) return;
-
-        this.currentOperand = this.currentOperand + digit;
-        console.log(this.currentOperand);
+        // agregar digitos
+        this.currentOperand += digit;
     }
     selectOperator(){
 
