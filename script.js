@@ -15,12 +15,14 @@ class Calculator {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement; 
 
-    this.previousOperand = "";
-    this.currentOperand = "";
-    this.operation = undefined;
-    }
-    allClear() {
+    this.allClear();
 
+}
+    allClear() {
+        this.previousOperand = '';
+        this.currentOperand = '';
+        this.operation = undefined;
+    
     }
     deletDigit() {
         this.currentOperand = this.currentOperand.slice(0,-1)
@@ -40,15 +42,54 @@ class Calculator {
         // agregar digitos
         this.currentOperand += digit;
     }
-    selectOperator(){
+    selectOperation(operation){
+        if (this.currentOperand === '' && operation ==='-') {
+        this.appendDigit(operation);
+        return;
+        }
+    
+        if (this.previousOperand !== '') this.calculate();
 
+        this.operation = operation;
+        this.previousOperand = this.currentOperand;
+        this.currentOperand = '';
     }
     calculate() {
+        let result;
+        const prev = parseFloat(this.previousOperand);
+        const current = parseFloat(this.currentOperand);
+        
+        if(isNaN(prev) || isNaN(current)) return;
+        if(!isNaN(prev) && current === 0) return;
 
+        switch(this.operation){
+            case'+':
+                result = prev+current;
+                break;
+            case'-':
+                result = prev-current;
+                break;
+            case'*':
+                result = prev*current;
+                break;
+            case'÷':
+                result = prev/current;
+                break;
+            default:
+                return;
+        }
+        this.currentOperand = result.toString();
+        this.operation = undefined;
+        this.previousOperand = '';
     }
     updateDisplay() {
         this.currentOperandTextElement.innerText = this.currentOperand;
-    }
+        if (this.operation !== undefined) {
+            this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation}`;
+        } else {
+            this.previousOperandTextElement.innerText = '';
+        }}
+    
     getOperandFromDisplay() {
 
     }
@@ -71,4 +112,15 @@ numberButtons.forEach(button =>{
         calculator.appendDigit(button.innerText);
         calculator.updateDisplay();
     })
+})
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        calculator.selectOperation(button.innerText);
+        calculator.updateDisplay();
+    })
+})
+
+equalsButton.addEventListener('click', () =>{
+    calculator.calculate();
+    calculator.updateDisplay();
 })
