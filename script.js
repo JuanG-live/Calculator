@@ -34,6 +34,10 @@ class Calculator {
         // poner un solo '.'
         if (digit === '.' && this.currentOperand.includes('.'))return;
 
+        if (this.currentOperand === '0' && digit !== '0' && digit != '.'){ 
+        this.currentOperand = '';
+        }
+
         // poner un cero a la izq cuando selecciono '.'
         if (digit === '.' && this.currentOperand === '') this.currentOperand = '0';
 
