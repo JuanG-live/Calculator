@@ -8,6 +8,7 @@ const operatorButtons = document.querySelectorAll('[data-operator');
 const allClearButton =document.querySelector('[data-all-clear]');
 const deleteButton = document.querySelector('[data-delete]');
 const equalsButton = document.querySelector('[data-equals]');
+const calculatorContainerElement = document.querySelector('.calculator-grid');
 
 // constructor
 class Calculator {
@@ -123,4 +124,36 @@ operatorButtons.forEach(button => {
 equalsButton.addEventListener('click', () =>{
     calculator.calculate();
     calculator.updateDisplay();
+})
+
+// event listeners: keyboard 
+window.addEventListener('keyup', (e) => {
+    console.log(e.key);
+    switch (e.key) {
+        case 'Escape':
+            calculator.allClear();
+            
+            break;
+        case 'Backspace':
+                calculator.deletDigit();
+                break;
+        case 'Delete':
+                calculator.deletDigit();
+                break;
+        case'1':         case'2':        case'3':      case'4':        case'5':        case'6':        case'7':        case'8':        case'9':        case'.':        case'0':
+            calculator.appendDigit(e.key);
+            break;
+            case '/':
+                calculator.selectOperation('÷');
+                break;
+            case '+': case '-': case '*': 
+            calculator.selectOperation(e.key);
+            break;
+            case 'Enter':
+                calculator.calculate();
+                break;
+                default:
+                    break
+            }
+            calculator.updateDisplay();
 })
