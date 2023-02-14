@@ -94,10 +94,7 @@ class Calculator {
         } else {
             this.previousOperandTextElement.innerText = '';
         }}
-    
-    getOperandFromDisplay() {
 
-    }
 
 } /* Class Calculator*/
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
@@ -136,7 +133,6 @@ window.addEventListener('keyup', (e) => {
     switch (e.key) {
         case 'Escape':
             calculator.allClear();
-            
             break;
         case 'Backspace':
                 calculator.deletDigit();
@@ -156,8 +152,8 @@ window.addEventListener('keyup', (e) => {
             case 'Enter':
                 calculator.calculate();
                 break;
-                default:
-                    break
+            default:
+                return;
             }
             calculator.updateDisplay();
 })
