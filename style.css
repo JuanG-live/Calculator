@@ -7,6 +7,7 @@
     --gradient-yellow-orange: linear-gradient(to right, #ffaa00,#9e7100);
     --color-display1:rgba(255, 255, 255, 1);
     --color-display2: rgba(255, 255, 255, 0.42);
+    --transition: 0.25s linear;
 }
 
 * {
@@ -30,7 +31,7 @@ body {
     min-height: 100vh;
 }
 
-.calculator-grid{
+.calculator-grid {
     display: grid;
     justify-content: center;
     align-content: center;
@@ -39,6 +40,14 @@ body {
     gap: 5px;
 }
 
+.calculator-grid > button:hover {
+    background-color: var(--color-display1);
+    transition: background-color var(--transition);
+}
+
+.calculator-grid > button:active {
+    transform: translate(1px, 1px);
+}
 .calculator-grid > button {
     cursor: pointer;
     font-size: 3rem;
