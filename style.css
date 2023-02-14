@@ -1,37 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
-: root {
-
+:root {
+    --color-yellow:#ffaa00;
+    --color-orange: #9e7100;
+    --color-display: rgba(0, 0, 0, .75);
+    --gradient-yellow-orange: linear-gradient(to right, #ffaa00,#9e7100);
+    --color-display1:rgba(255, 255, 255, 1);
+    --color-display2: rgba(255, 255, 255, 0.42);
 }
+
+* {
+    box-sizing: border-box;
+    border: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, #ffaa00, hwb(43 0% 38%));
+    background: var(--gradient-yellow-orange);
     font-family: "Roboto", sans-serif;
     font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    min-height: 100vh;
 }
 
 .calculator-grid{
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
-    grid-template-columns: repeat(4,100px);
-    grid-template-rows: minmax(120px, auto) repeat(5, 100px) ;
+    grid-template-columns: repeat(4,10rem);
+    grid-template-rows: minmax(12rem, auto) repeat(5, 10rem) ;
+    gap: 5px;
 }
+
 .calculator-grid > button {
     cursor: pointer;
-    font-size: 2rem;
-    border: 2px solid white;
+    font-size: 3rem;
     outline: none;
-    background-color: rgba(255, 255, 255, 0.42);
-
+    background-color: var(--color-display2);
 }
+
 .display {
     grid-column: 1/ -1;
-    background-color: rgba(0, 0, 0, .75);
+    background-color: var(--color-display);
     color: white;
-
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -39,15 +58,15 @@ body {
     word-wrap: break-word;
     word-break: break-all;
 }
+
 .previous-operand{
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, .85)
+    font-size: 3rem;
+    color: var(--color-display2);
 }
 
 .current-operand{
-    font-size: 3rem;
     color: white;
-    font-weight: 700;
+    font-size: 4rem;
 }
 
 .span-two {
