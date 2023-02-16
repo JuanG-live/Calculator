@@ -88,13 +88,19 @@ class Calculator {
         this.previousOperand = '';
     }
     updateDisplay() {
-        this.currentOperandTextElement.innerText = this.currentOperand;
+        console.log(this.currentOperand)
+        this.currentOperandTextElement.innerText = this.formatNumber(this.currentOperand);
         if (this.operation !== undefined) {
-            this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation}`;
+            this.previousOperandTextElement.innerText = `${this.previousOperand.toLocaleString('en-us')} ${this.operation}`;
         } else {
             this.previousOperandTextElement.innerText = '';
         }}
 
+    formatNumber(numberAsString) {
+        if (numberAsString === '') return '';
+        const number = parseFloat(numberAsString);
+        return number.toLocaleString('en-us')
+    }
 
 } /* Class Calculator*/
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
@@ -104,6 +110,7 @@ allClearButton.addEventListener('click', button => {
     calculator.allClear();
     calculator.updateDisplay();
 })
+
 deleteButton.addEventListener('click', () =>{
     calculator.deletDigit();
     calculator.updateDisplay();
@@ -115,6 +122,7 @@ numberButtons.forEach(button =>{
         calculator.updateDisplay();
     })
 })
+
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.selectOperation(button.innerText);
@@ -129,7 +137,6 @@ equalsButton.addEventListener('click', () =>{
 
 // event listeners: keyboard 
 window.addEventListener('keyup', (e) => {
-    console.log(e.key);
     switch (e.key) {
         case 'Escape':
             calculator.allClear();
@@ -149,6 +156,7 @@ window.addEventListener('keyup', (e) => {
             case '+': case '-': case '*': 
             calculator.selectOperation(e.key);
             break;
+            case '=':
             case 'Enter':
                 calculator.calculate();
                 break;
@@ -156,4 +164,5 @@ window.addEventListener('keyup', (e) => {
                 return;
             }
             calculator.updateDisplay();
+            equalsButton
 })

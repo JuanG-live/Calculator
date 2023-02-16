@@ -8,6 +8,7 @@
     --color-display1:rgba(255, 255, 255, 1);
     --color-display2: rgba(255, 255, 255, 0.42);
     --transition: 0.25s linear;
+    --animation-keypress: translate(2px, 2px)
 }
 
 * {
@@ -46,7 +47,8 @@ body {
 }
 
 .calculator-grid > button:active {
-    transform: translate(1px, 1px);
+    background-color: var(--color-display1);
+    transform: var(--animation-keypress)
 }
 .calculator-grid > button {
     cursor: pointer;
