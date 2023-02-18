@@ -41,20 +41,37 @@ body {
     gap: 5px;
 }
 
-.calculator-grid > button:hover {
-    background-color: var(--color-display1);
-    transition: background-color var(--transition);
+.flash {
+    animation: bright-flash 0.3s linear;
 }
 
-.calculator-grid > button:active {
-    background-color: var(--color-display1);
-    transform: var(--animation-keypress)
+@keyframes bright-flash {
+    0% {
+        background-color: var(--color-display);
+    }
+    50%{
+        background-color: var(--color-display1);
+    }
+    100% {
+        background-color: var(--color-display2);
+    }
 }
+.calculator-grid > button:hover {
+    background-color: var(--color-display1);
+}
+
+.calculator-grid > button:active,
+.calculator-grid > button.key-pressed {
+    background-color: var(--color-display1);
+    transform: var(--animation-keypress);
+}
+
 .calculator-grid > button {
     cursor: pointer;
     font-size: 3rem;
     outline: none;
     background-color: var(--color-display2);
+    transition: background-color var(--transition);
 }
 
 .display {
